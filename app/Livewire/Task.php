@@ -74,6 +74,7 @@ class Task extends Component
 
     public function render()
     {
+        $tasks = ModelsTask::with('user')->latest()->get();
         // $query = ModelsTask::query();
         // $users = User::query()
         //     ->whereIn('id', (clone $query)
@@ -98,9 +99,7 @@ class Task extends Component
         //     });
 
         return view('livewire.task', [
-            'tasks' => Cache::remember('tasks', now()->addMinutes(1), function () {
-                ModelsTask::with('user')->latest()->get();
-            })
+            'tasks' => $tasks
         ]);
     }
 }

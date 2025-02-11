@@ -38,31 +38,31 @@
                 <div class="flex-1">
                     <div class="flex justify-between items-center">
                         <div>
-                            {{-- <span class="text-gray-800">{{ $task->user->name }}</span> --}}
+                            <span class="text-gray-800">{{ $task->user->name }}</span>
                             <small class="ml-2 text-sm text-gray-600">{{ $task->status }}</small>
                         </div>
-                        {{-- @if ($task->user->is(auth()->user())) --}}
-                        <x-dropdown>
-                            <x-slot name="trigger">
-                                <button>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400"
-                                        viewBox="0 0 20 20" fill="currentColor">
-                                        <path
-                                            d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                                    </svg>
-                                </button>
-                            </x-slot>
-                            <x-slot name="content">
-                                <x-dropdown-link wire:click="editTask({{ $task->id }})">
-                                    {{ __('Edit') }}
-                                </x-dropdown-link>
-                                <x-dropdown-link wire:click="deleteTask({{ $task->id }})"
-                                    wire:confirm="Are you sure to delete this task?">
-                                    {{ __('Delete') }}
-                                </x-dropdown-link>
-                            </x-slot>
-                        </x-dropdown>
-                        {{-- @endif --}}
+                        @if ($task->user->is(auth()->user()))
+                            <x-dropdown>
+                                <x-slot name="trigger">
+                                    <button>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400"
+                                            viewBox="0 0 20 20" fill="currentColor">
+                                            <path
+                                                d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
+                                        </svg>
+                                    </button>
+                                </x-slot>
+                                <x-slot name="content">
+                                    <x-dropdown-link wire:click="editTask({{ $task->id }})">
+                                        {{ __('Edit') }}
+                                    </x-dropdown-link>
+                                    <x-dropdown-link wire:click="deleteTask({{ $task->id }})"
+                                        wire:confirm="Are you sure to delete this task?">
+                                        {{ __('Delete') }}
+                                    </x-dropdown-link>
+                                </x-slot>
+                            </x-dropdown>
+                        @endif
                     </div>
                     <p class="mt-4 text-lg text-gray-900">{{ $task->title }}</p>
                 </div>
